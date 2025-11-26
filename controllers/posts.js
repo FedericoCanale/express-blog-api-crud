@@ -1,9 +1,17 @@
 
 const posts = require("../data/posts");
 
-
 function index(req, res) {
-    res.json(posts);
+    const tag = req.query.tag;
+    if (!tag) {
+        return res.json(posts);
+    }
+    const normalizedTag = tag.charAt(0).toUpperCase() + tag.slice(1);
+    const filtered = posts.filter(post => post.tags.includes(normalizedTag));
+    if (filtered.length === 0) {
+        return res.status(404).json({ message: "Nessun post trovato con questo tag" });
+    }
+    return res.json(filtered);
 }
 
 
@@ -43,7 +51,7 @@ function destroy(req, res) {
     }
     posts.splice(index, 1);
     console.log("Lista aggiornata dei post:", posts);
-    return res.status(204).end();
+    return res.sendStatus(204);
 }
 
 module.exports = {

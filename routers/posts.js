@@ -27,6 +27,7 @@ module.exports = router;
 
 /* Chiamate su postman
     - GET http://localhost:3000/posts lista dei post
+    - GET GET http://localhost:3000/posts?tag=dolci solo i tag
     - GET http://localhost:3000/posts/1 dettaglio dei singoli post
     - POSTS http://localhost:3000/posts creare nuovi post
     - PUT http://localhost:3000/posts/1 aggiornare tutto un post
