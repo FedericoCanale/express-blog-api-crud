@@ -35,7 +35,15 @@ function modify(req, res) {
 
 
 function destroy(req, res) {
-    res.send(`Cancellazione del post ${req.params.id}`);
+    const id = Number(req.params.id);
+    const index = posts.findIndex(p => p.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({ message: "Post non trovato" });
+    }
+    posts.splice(index, 1);
+    console.log("Lista aggiornata dei post:", posts);
+    return res.status(204).end();
 }
 
 module.exports = {
