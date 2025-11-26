@@ -1,46 +1,27 @@
+
 const express = require("express");
 const router = express.Router();
-const posts = require("../data/posts");
-
-// INDEX (bonus)
-router.get("/", (req, res) => {
-    res.json(posts);
-});
 
 
-// SHOW (bonus)
-router.get("/:id", (req, res) => {
-    const id = Number(req.params.id);          // converto l'id in numero
-    const post = posts.find((p) => p.id === id); // cerco il post
+const postsController = require("../controllers/posts");
 
-    if (!post) {
-        // se non lo trovo, mando un messaggio semplice
-        return res.status(404).json({ message: "Post non trovato" });
-    } else {
-        // altrimenti mando il post
-        return res.json(post);
-    }
-});
+// INDEX 
+router.get("/", postsController.index);
+
+// SHOW 
+router.get("/:id", postsController.show);
 
 // CREATE 
-router.post("/", (req, res) => {
-    res.send("Creazione di un nuovo post");
-});
+router.post("/", postsController.store);
 
 // UPDATE 
-router.put("/:id", (req, res) => {
-    res.send(`Aggiornamento completo del post ${req.params.id}`);
-});
+router.put("/:id", postsController.update);
 
-// UPDATE 
-router.patch("/:id", (req, res) => {
-    res.send(`Aggiornamento parziale del post ${req.params.id}`);
-});
+// UPDATE PARZIALE
+router.patch("/:id", postsController.modify);
 
 // DELETE 
-router.delete("/:id", (req, res) => {
-    res.send(`Cancellazione del post ${req.params.id}`);
-});
+router.delete("/:id", postsController.destroy);
 
 module.exports = router;
 
