@@ -42,9 +42,27 @@ function store(req, res) {
 
 
 function update(req, res) {
-    res.send(`Aggiornamento completo del post ${req.params.id}`);
-}
+    const postId = Number(req.params.id);
+    const postData = req.body;
 
+
+    const post = posts.find(p => p.id === postId);
+
+    if (!post) {
+        return res.status(404).json({
+            error: true,
+            message: "Post non trovato"
+        });
+    }
+
+
+    post.title = postData.title;
+    post.content = postData.content;
+    post.image = postData.image;
+    post.tags = postData.tags;
+
+    return res.json(post);
+}
 
 function modify(req, res) {
     res.send(`Aggiornamento parziale del post ${req.params.id}`);
