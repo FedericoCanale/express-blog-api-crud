@@ -33,4 +33,12 @@ module.exports = router;
     - PUT http://localhost:3000/posts/1 aggiornare tutto un post
     - PATCH http://localhost:3000/posts/1 Aggiornare parzialmente un post
     - DELETE http://localhost:3000/posts/1 eliminare un post
-    - GET http://localhost:3000/imgs/posts/ciambellone.jpeg per testare le immagini */
+    - GET http://localhost:3000/imgs/posts/ciambellone.jpeg per testare le immagini 
+    
+    New Post to insert from Postman using the verb POST and http://localhost:3000/posts: 
+    {
+    title: "Torta della nonninna",
+    content: `Che buona che è la torta dela mia nonninna`,
+    tags: ["Dolci", "Dolci alla crema", "Torte"],
+  },
+    */
