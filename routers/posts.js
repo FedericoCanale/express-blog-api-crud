@@ -36,9 +36,10 @@ module.exports = router;
     - GET http://localhost:3000/imgs/posts/ciambellone.jpeg per testare le immagini 
     
     New Post to insert from Postman using the verb POST and http://localhost:3000/posts: 
-    {
-    title: "Torta della nonninna",
-    content: `Che buona che è la torta dela mia nonninna`,
-    tags: ["Dolci", "Dolci alla crema", "Torte"],
-  },
+ {
+  "title": "Prova",
+  "content": "Ciao mondo",
+  "image": "/img/prova.jpg",
+  "tags": ["test", "blog"]
+}
     */
