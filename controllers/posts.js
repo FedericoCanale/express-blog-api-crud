@@ -65,7 +65,25 @@ function update(req, res) {
 }
 
 function modify(req, res) {
-    res.send(`Aggiornamento parziale del post ${req.params.id}`);
+    const postId = Number(req.params.id);
+    const postData = req.body;
+
+    const post = posts.find(p => p.id === postId);
+
+    if (!post) {
+        return res.status(404).json({
+            error: true,
+            message: "Post non trovato"
+        });
+    }
+
+
+    if (postData.title !== undefined) post.title = postData.title;
+    if (postData.content !== undefined) post.content = postData.content;
+    if (postData.image !== undefined) post.image = postData.image;
+    if (postData.tags !== undefined) post.tags = postData.tags;
+
+    return res.json(post);
 }
 
 
