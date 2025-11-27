@@ -28,8 +28,16 @@ function show(req, res) {
 
 
 function store(req, res) {
-    console.log(req.body);
-    res.send("Creazione di un nuovo post");
+    console.log("Dati in arrivo:", req.body);
+
+    const newPost = {
+        id: Date.now(),
+        ...req.body
+    };
+
+    posts.push(newPost);
+
+    return res.status(201).json(newPost);
 }
 
 
