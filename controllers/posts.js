@@ -99,6 +99,11 @@ function destroy(req, res) {
     return res.sendStatus(204);
 }
 
+/* function index(req, res, next) {
+    next(new Error("Errore di test!"));
+}
+  To test internal server error  */
+
 module.exports = {
     index,
     show,
